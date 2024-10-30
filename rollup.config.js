@@ -9,14 +9,14 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      //file: 'dist/index.cjs',
       dir: 'dist',
       format: 'cjs',
+      entryFileNames: '[name].cjs',
     },
     {
-      //file: 'dist/index.js',
       dir: 'dist',
       format: 'esm',
+      entryFileNames: '[name].js',
     },
   ],
   plugins: [
