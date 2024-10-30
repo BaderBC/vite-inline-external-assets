@@ -27,20 +27,19 @@ export function inlineExternalAssets() {
 
           if (!response.ok) {
             throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
-            continue;
           }
 
           const buffer = await response.arrayBuffer();
           if (!buffer || buffer.byteLength === 0) {
             throw new Error(`Empty buffer for ${url}`);
-            continue;
           }
+
 
           const mimeType = mime.lookup(url) || 'application/octet-stream';
           const base64 = Buffer.from(buffer).toString('base64');
           const dataUri = `data:${mimeType};base64,${base64}`;
-          
-          html = html.replace(new RegExp(url, 'g'), dataUri);
+
+          html = html.replace(url, dataUri);
         } catch (error) {
           console.error(`Failed to inline ${url}:`, error);
 	  didGetError = true;
