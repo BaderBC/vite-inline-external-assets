@@ -1,0 +1,32 @@
+{
+  "name": "vite-inline-external-assets",
+  "version": "1.0.0",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^22.8.4",
+    "rollup": "^4.24.3",
+    "tslib": "^2.8.0",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "mime-types": "^2.1.35"
+  }
+}
