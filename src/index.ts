@@ -8,12 +8,14 @@ export function inlineExternalAssets() {
     async transformIndexHtml(html: string) {
       const externalUrls = [];
 
-      const regex = /<(?:[a-zA-Z]+)[^>]*(?:src|href)="(https:\/\/[^"]+)"[^>]*>/g;
+      const regex = /<(?:[a-zA-Z]+)[^>]*(?:src|href)="(https?:\/\/[^"]+)"[^>]*>/g;
       let match;
 
       while ((match = regex.exec(html)) !== null) {
         externalUrls.push(match[1]);
       }
+
+      let didGetError = false;
 
       for (const url of externalUrls) {
         try {
@@ -24,13 +26,13 @@ export function inlineExternalAssets() {
           });
 
           if (!response.ok) {
-            console.warn(`Failed to fetch ${url}: ${response.statusText}`);
+            throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
             continue;
           }
 
           const buffer = await response.arrayBuffer();
           if (!buffer || buffer.byteLength === 0) {
-            console.warn(`Empty buffer for ${url}`);
+            throw new Error(`Empty buffer for ${url}`);
             continue;
           }
 
@@ -40,8 +42,13 @@ export function inlineExternalAssets() {
           
           html = html.replace(new RegExp(url, 'g'), dataUri);
         } catch (error) {
-          console.warn(`Failed to inline ${url}:`, error);
+          console.error(`Failed to inline ${url}:`, error);
+	  didGetError = true;
         }
+      }
+
+      if(didGetError) {
+	throw new Error("Inlining dependencies failed because of previously printed errors");
       }
 
       return html;

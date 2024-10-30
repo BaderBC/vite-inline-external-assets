@@ -8,12 +8,9 @@ importers:
 
   .:
     dependencies:
-      mime-types:
-        specifier: ^2.1.35
-        version: 2.1.35
-      node-fetch:
-        specifier: ^3.3.2
-        version: 3.3.2
+      vite-inline-external-assets:
+        specifier: 'link:'
+        version: 'link:'
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^28.0.1
@@ -36,6 +33,12 @@ importers:
       '@types/node':
         specifier: ^22.8.4
         version: 22.8.4
+      mime-types:
+        specifier: ^2.1.35
+        version: 2.1.35
+      node-fetch:
+        specifier: ^3.3.2
+        version: 3.3.2
       rollup:
         specifier: ^4.24.3
         version: 4.24.3
