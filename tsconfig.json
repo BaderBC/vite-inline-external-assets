@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext", // or a specific version like ES2020
-    "module": "CommonJS",
+    "module": "ESNext",
     "declaration": true, // Generate .d.ts files for TypeScript declarations
     "outDir": "./dist",  // Output directory for compiled files
     "strict": true,      // Enable all strict type-checking options
