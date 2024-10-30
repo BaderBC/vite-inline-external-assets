@@ -1,0 +1,1 @@
+# vite-inline-external-assets
